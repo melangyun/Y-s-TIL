@@ -1,0 +1,61 @@
+browser :
+  컴퓨터는 2진수만 알아들음, HTML CSS JS로 작성한 코드를 컴퓨터에서 볼 수 있는 이유는?
+  브라우저 덕분!  https://d2.naver.com/helloworld/59361  
+
+server : 자원을 serve하는 주체 - 리소스 요청과 응답에 대한 처리
+         클라이언트가 커피 원두를 음료로 먹으려면 어떻게 해야될까? 서버가 필요!
+
+API (Application Programming Interface) : 프로그래밍 되어있는 애플리케이션과 의사소통 가능한 매개체
+	서버 자원을 잘 가져다 쓸 수 있게 만들어 놓은 interface 한마디로 메뉴판!
+	메뉴판이 있어야 서버는 원두를 바탕으로 음료(리소스)를 만들어 제공 할 수 있다.
+	서버도 메뉴판이 필요하다. get / messages : 메세지 전달 , post /messages :메세지 저장
+	그래야 클라이언트가 리소스 요청 및 생성을 할 수 있다.
+
+HTTP :  HyperText Transfer Protocol (프로토콜!!)
+  프로토콜 : 규약, 규칙 _ 클라이언트와 서버가 통신하기 위해서 규약과 규칙을 지켜야함..
+  클라이언트와 서버가 통신할때 http 규칙에 의해 클라이언트와 서버가 통신함(TCP/IP중 가장 상위 규약)
+  작동방식 : 항상 요청과 응답으로 이루어진다.(메세지를 달라고하면 메세지를 줌, 없으면 없다고 응답) 
+  구성 : 헤더(header)와 바디(body)를 가짐 (응답과 요청 모두 필요!)
+             header : 어디서 보내는 요청인가 (origin)
+                      컨텐츠 타입은 무엇인가(content-type)
+                      어떤 클라이언트를 이용해 보냈는가(user-agent)
+             body :  각 method가 body를 가지는지는 mdn에서 확인
+            https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+            https://www.zerocho.com/category/HTTP/post/5b3ba2d0b3dabd001b53b9db
+  속성 : stateless(http의 각 요청은 모두 독립적이다. 따라서 state라는것이 없다.)
+            connectionless(한번의 요청에는 한번의 응답을 한다.)
+  메소드 :  get/ post / put / delete
+                 get - 서버에 자원을 요청.
+                 post - 서버에 자원을 생성.
+                 put - 서버에 자원을 수정.
+                 delete - 서버의 자원을 제거
+
+Ajax
+	이전 방식 -> form.html -> 서버전송 -> result.html (화면전환 - 깜박임 있음 -> 전체 랜더링)
+	dynamic web page의 등장
+		서버와 자유롭게 통신할 수 있고(XMLHttpRequest_XHR의 등장),
+		페이지 깜빡임 없이 seamless 하게 작동하는(JS DOM이용)
+		단순한 web page가 아닌, 보다 애플리케이션 다운 web app의 등장
+
+	
+	fetch API => 보다 쓰기 쉬운 표준 API
+		fetch('http://52.78.213.9:3000/messages')//get 요청의 부분...
+		.then(function(response){
+			return response.json();		
+		})
+		.then(function(json){
+			// json형태로 전달받은 서버로부터의 응답
+		})
+	post 요청은 어떻게 보낼까? -> MDN : Using Fetch
+	최신기술이라고 fetch가 전부 좋은것은 아니며, 여전히 XMLHttpRequest는 많이쓰는 기술이므로, fetch와 XML HttpRequset와 차이점을  확인 한 후 사용하는 것이 좋음.
+
+Why we User Fetch?
+	fetch : '가져옴' -> 어떤것을 가져오는 function이다. 
+	무엇을 가져오기위해서? 서버 자원!
+	클라이언트 -(fetch!)-> 서버 -(리소스)-> 클라이언트
+	fetch만 가능할까?
+	1. xmlHttpRequest
+	2. jQuery ajax
+	3. fetch -> 조금더 강력하고 유연함..(mdn 에서 확인링)
+
+

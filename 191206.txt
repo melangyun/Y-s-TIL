@@ -1,0 +1,61 @@
+CommonJS
+js 의 폭을 넓히기위한 movement : surverside에서도 js를 사용할 수 있게하자.
+js의 module화 -> module은 무엇일까?
+
+check point_ 12-1
+require가 어떤걸 되돌려줄까?
+var x = 10;
+var mod = require('/lib/my0module.js');
+var result = mod.x;
+
+var x = 20;
+exports.x =30;
+
+require 반환하는게 exports임!
+따라서 result 는 30임
+
+
+check point_12-2
+var mod = require('./lib/my-module.js');
+var result = mod.x
+
+./lib/my-module.js
+var x = 10;
+exports.x = 20;
+module.exports.x = 30;
+
+result 는 mod.x, mod는 exports 객체임.
+exports.x 와  module.exports.x 의 차이는?
+exports는 모듈 익스포츠를 참조하는 객체임
+module이 window같은 그런느낌
+
+check point_12-3 : 같은 require를 참조하면 같은 참조
+check point_12-4 : 같은 module을 참조하마면 counter이 같이올라감!
+
+check point_12-5 : require이 두번, console은 1번?
+require을 실행하면 파일을 불러오는게 한번은 실행이됨 require을 여러번 해도 한번만 실행이됨!!!
+왜그러냐면 캐싱이랑 관련이 있음!!!
+
+
+check point_12-9
+
+
+Intro Express
+	- Philosophy : Express 의 철학 - http서버를 위한 작지만 강력한 툴을 제공하는 프레임워크
+	- Middleware : 중간 공정
+		app.user((req, res, next) => {
+			  if(!reg.money){
+				return res.status(404).send('go-back)
+			  }
+			  req.car = insertParts(req.frame)
+			  next();		
+		});
+	- Router : 라우팅은 어떤 네트워크 안에서 통신 데이터를 보낼 경로를 선택하는 과정이다.
+		클라이언트 입장에선 정해 준 경로대로 요청하면 되지만, 서버는 메뉴판을 설계해 주어야한다.
+		즉, 클라이언트가 요청할 수 있도록 요청 경로를 만들어주어야함
+
+npm --inspect
+-디버깅!!!!!!
+terminal console이 뜸
+
+

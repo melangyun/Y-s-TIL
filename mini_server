@@ -1,0 +1,59 @@
+const http = require("http");
+
+const PORT = 5000;
+
+const ip = "localhost";
+
+const server = http.createServer((request, response) => {
+  let headers = defaultCorsHeader;
+  request.on("error", err => {
+    console.error(err);
+    response.writeHead(400, headers); // Bad Request
+    response.end();
+  });
+  response.on("error", err => console.error(err));
+
+  if (request.method === "OPTIONS") {
+    // If preflight request asks for CORS config
+    response.writeHead(204, headers); // Allow CORS
+    response.end();
+  } else if (request.method === "POST") {
+    let stringMethod;
+    if (request.url === "/upper") {
+      stringMethod = "toUpperCase";
+    } else if (request.url === "/lower") {
+      stringMethod = "toLowerCase";
+    } else {
+      response.writeHead(404, headers); // Not Found
+      response.end();
+      return;
+    }
+    let body = [];
+    // request is a ReadableStream and inherits from EventEmitter. on() is a method that listens
+    // for an event (e.g., when it receives a chunk of buffer data and when the stream ends)
+    request
+      .on("data", chunk => body.push(chunk))
+      .on("end", () => {
+        // Buffer.concat() joins all buffer objects in an array into one buffer object.
+        // .toString() makes the buffer object into a string (default encoding utf8)
+        body = Buffer.concat(body).toString();
+        // response is a ServerResponse, which is an instance of WritableStream.
+        response.writeHead(200, headers);
+        response.end(body[stringMethod]()); // Could also use response.write() before this
+      });
+  } else {
+    response.writeHead(400, headers); // Bad request
+    response.end();
+  }
+});
+
+server.listen(PORT, ip, () => {
+  console.log(`http server listen on ${ip}:${PORT}`);
+});
+
+const defaultCorsHeader = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "access-control-allow-headers": "content-type, accept",
+  "access-control-max-age": 1000
+};

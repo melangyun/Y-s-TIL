@@ -1,0 +1,113 @@
+학습 목표
+1. 프론트엔드 개발자를 위한 문서를 작성 할 수 있다.
+2. HTTP server 를 켜기 위해 NodeJS를 사용할 수 있다.
+3. 웹 브라우저를 이 용해 서버와 통신할 수 있도록 연결할 수 있다.
+4. export와 require 를 사용할 줄 안다.
+5. package.json에 있는 scripts의 의미를 알고 사용 할 수 있다.
+6. Node Module 들을 사용할 줄 안다.
+7. Node application 을 디버깅 할 줄 안다.
+8. Express를 활용하여 작성한 서버 코드를 리팩토링 할 수 있다.
+
+
+
+Servers and Node
+- CommonJs , 라우팅, 서버사이드 디버깅
+- ExpressJs ..도있지만 우리는 일단 NodeJS부터 할것임
+
+Node Js...
+주언어로 다루는 Node Js 에 제대로 익숙해지기 위해서 Solo sprint로 진행될것임 - 코드 직접작성하는게 중요행
+
+Client 에서 code 를 활용하는 입장에서 API에서 코드를 제공하는 입장이되는것..
+웹개발에 있어서 필요한 데이터를 만드는것..
+
+node JS 의 HTTP모듈을 만들것이고. chatterbox 의 코드를 합칠것임
+
+Event Loop - 자바스크립트의 이벤트 루프
+
+자바스크립트 런타임
+heap, stack
+
+브라우저는 DOM, AJAX, timeout 등과 함께 event loop 와  call back queue를 가지고있음. 하지만 이사이의 상관관계는..?
+
+자바스크립트틑 싱글 스레드 프로그래밍 언어임
+the call stack 
+one thread == one call stack == one thing at a time
+
+blocking - 그저 느리게 동작하는 코드
+이를 위해 비동기존재~
+
+이벤트 루프와 동시성~JS는 한번에 하나밖에 할 수 없음
+JS는 다른 코드를 실행시키는 동안 Ajax요청을 실행 할 수 없음. setTimeout 역시 마찬가지
+setTimeout 은 webapi이다. webspis영역에 쌓여있다가 stack이 모두 실행뒤 clear 해지면 그제서야 
+task queue 로 전송되고, 이벤트루프에 다달함.
+(이벤트루프 : 콜스택과 테스크 큐 주시, 스택이 비어있으면 큐의 첫번째 콜백을 스택에 쌓아 효과적으로 실행할 수 있게 해줌.)
+stack으로 이벤트가 재호출되어 실행됨
+
+AJAX또한 webAPIS라 webapis에 쌓여있다가 요청을 받운 후 task queue 로 가고, event loop에 의해서stack으로 가 실행됨
+
+콜백
+1. 다른함수가 부르는 함수,
+2. 혹은 앞으로 큐에 쌓일 비동기식 콜백
+
+
+Intro CORS
+Cross Origin Resource Sharing : corss origin에서 리소스(서버자원)을 요청하여 사용한다.
+예전에는 서버에서 클라이언트파일을 가지고있고, 유저가 서버를 요청시 서버에서 내려받은 클라이언트로 통신 -> 의심의 여지가 없었음
+(Same origin)이기 때문에.
+최근에 들어 웹이 고도화되며 클라이언트(api등) 여러 곳에 있는 리소스를 활용할 필요가 생겼다.
+same origin이 아니라 cross origin!!
+브라우저에서 크로스 도메인 요청은 기본적으로 제한되어있다.
+웹 애플리캐이션 고도화를 위해 개선을 요청하게됨 -> 서버가 허용한 범위내에서 cross origin요청허용
+
+고도화 된 최근의 웹 ->이러한 조건들을 갖춘 코드(cors)를 허용해주겠다.
+	- 모든 도메인(*)을 허용한다.
+	- 메소드는 get post put delete options 만 허용한다.
+	- 헤더에는 content-type과 accept만 쓸 수 있다.
+	- preflight request 는 10초 까지 허용 된다.~
+
+
+서버에 allow 하는 조건들을 다 맞추고 있는가? 사전에 서버에 확인하는 요청
+
+OPTIONS methods는 mdn에서 더 확인!
+
+
+
+Intro Node.js
+What is Node.js
+노드는 v8엔진으로 만들어진 자바스크립트 런타임이다.
+V8 complies JS directly to native machine code -> 자바스크립트를 기계어로 컴파일 해준다.
+runtime -> 프로그래밍 언어가 구동되고 있는 환경
+자바스크립트를 컴파일 해주는 엔진으로 빌드된 자바스크립트가 구동중인 환경이다.
+
+이벤트 기반 및 논블로킹 I/O모델
+이벤트 -> 유저의 버튼 클릭이나 네트워크에 리소스를 요청하는 것 등
+논블로킹 vs 블로킹
+블로킹 - 다음 함수의 실행이 현재 함수의 종료 이후에 이루어지는 것.(동기적 방식 이라고 생각하면 될 듯 하다.)
+논블로킹 - 다음 함수의 실행이 현재 함수의 종료를 기다리지 않음(비동기적 방식이라고 생각)
+I/O model  - Input 을 주면 Output을 반환하는 모델
+	유저의 클릭이나 네트워크에 리소스를 요청하는 이벤트가 논블로킹으로 이루어지는 Input Output model
+
+? Node.js 는 javascript를 컴파일하여 구동하고 이벤트 기반의 non blocking 모델로 속도가 빠르다.
+
+Node core modules - 별도의 설치를 하지 않아도, Node상에서 쓸 수 있는 모듈이 있음.
+node와 함께 번들링 되어있는 모듈, require('')방식으로 사용할 수 있다.
+예시 - fs(advanced - file System)/ http(가장기본) / url / path
+const fs = require('fs')
+cosnt http = require('http')
+
+fs.readFile('./something.json',(err,data)=>{
+	console.log(data);
+});
+http.get('http://localhostL5000/api',(res)=>{
+	console.log(res)
+});
+
+npm - Node Package Manager _ 세계에서 가장 큰 오픈소스 라이브러리 생태계 중 하나
+package.json에 그 정보들이 모두 담겨있다.
+
+
+
+
+Intro Mini Server Sprint
+
+

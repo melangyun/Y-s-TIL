@@ -1,0 +1,50 @@
+Intro Chatterbox-Server
+
+- http 서버 만들기
+- 각 요청 분기하기
+- 분기에 따른 API 제공하기
+- API 문서 작성하기
+
+서버? 무엇 인가를 제공하는 주체
+http서버? http protocol을 통해 통신해서 API를 제공하는 주체
+	요청에 대한 응답이 없으면 안된다. - 요청과 응답이 모두 있는 구조로 있어야함
+
+클라이언트와 소통할 수 있는 서버를 구현할것임
+Chatterbox-client
+
+GET요청과 POST요청이 분기가 되는 식으로 서버가 작성되어야함.
+조건에 따라서 분기한다.요청이 오면 서버는 필요한 데이터를 만듬
+
+데이터 저장, 불러오기
+js (Array)오브젝트에 저장 할 수 있다.
+하지만 서버가 끄면 사라지기때문에 서버가 죽어도 보존되는 fs.writeFile이용!
+
+API문서 작성하기 - API문서를 작성하는것 까지 API개발이다.
+1. API사용법(method, router, etc...)
+2. 기대되는 return data형식 및 예제
+
+
+Intro Package.json
+
+npm을 활용하기 위한 정보들이 모여있는 파일!
+뿐만 아니라 project 전반에 관한 정보가 적혀있음
+project에 관한 정보, 설정된 script코드, 개발과 관련된 dependency들
+
+run script ? -> cli에서 해당 코드를 실행시킨다.
+
+dev-dependencty 개발 의존성 설치..
+npm install @babel/core --save-dev
+
+
+dependency
+직접 production과 관련있는 dependency
+npm을 쓸 때는 --save옵션을 줘야한다.
+
+npm install --save react
+우리가 흔히 하는 npm install 은 package.json에 있는 dependency를 바탕으로 설치
+dependency에 등록이 되어있지 않다면 코드에서는 해당 모듈을 쓰고있지만 npm install로는 설치되지 않는다.
+
+npm start : 사실은 package.json에 설정되어있음.
+
+
+

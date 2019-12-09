@@ -1,0 +1,24 @@
+__prototype__과 protoType는 다름
+
+Object.create()는 상속이라고 하기엔 비슷하지만 조금 부족함.
+protoType엔 존재하지 않기때문에!
+
+test하는 방법 : console.log(Object.prototype)
+vs 코드에서 ,debugger stop point 를 찍고 실행하면나옴
+
+Object.create()를하면 prototype 이 아니라 __prototype_에 object1 자체가 들어감!!
+-> obj1 === obj2.__prototype___
+obj1 : 조상
+obj2 : 상속받는 객체
+--> obj2 는 빈객체라고 할 수 있음.
+obj2
+
+prototype chain
+
+constructor ->  ?
+
+new 키워드로 인스턴스가 만들어질때 새로 만들어지는 인스턴스의 __Proto__가 들어갈 객체
+Object.create 는 그냥 prototype을 가르킴?
+
+call은 this를 바인딩한상태로 함수를 바로 실행시키고
+bind는 this값이 바인딩된 함수를 리턴한다.

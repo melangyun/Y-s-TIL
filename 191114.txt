@@ -1,0 +1,53 @@
+git push 1(remote name) master
+git push origin master
+
+git pull remote master
+git pull ~ master
+
+git pull 시에는 별다른 권한없이 코드를 가져올 수 있다.
+깃허브에 코드를 올렸다는 것 자체가 코드 공개를 시사하는것이기때문에
+
+페어는 git pull 1 master 
+git remote add pair(이름 수정 가능) <url>
+
+git --help
+
+lint 와 pretitier(프리티어) 의 차이
+lint - code의 룰('string' or "string")
+프리티어 : 코드의 모양
+if(){
+}
+or
+if()
+{
+}
+
+그런데 프리티어에서도 일부설정하는게 있는데 왜??
+린트는 안쓰면 에러를 내고 프리티어는 그냥 바꾸어줌
+
+프리티어를 쓰지 않으면 린트 rule설정대로 설정해주어야함
+린트 너 무 중 요 함!
+
+
+stack 
+push
+pop
+top
+size
+isEmpty
+
+high level - backbutton
+low level - callstack : Maximum call stack over flow
+
+서버접속의 대기열, 프린터
+que
+
+push
+shift
+
+
+
+
+
+
+

@@ -1,0 +1,132 @@
+노드 Js - 브라우저가 아닌 환경에서 자바스크립트를 사용하기위함
+
+What is React
+web page를 만드는방법
+1. HTML+ CSS+ JS
+2. React, View 등 front 라이브러리 사용
+
+리엑트 - component에 집중하고있는 라이브러리
+ Component : 하나의 의미를 가진 독립적인 단위 모듈
+하나의 의미를 가진 태그 사용가능!! ->재사용성 상승, 직관적
+
+React - ES6 & JSX
+리엑트는 기본적으로 ES6사용!
+반드시 알아야하는 개념
+1. Destructuring
+2. spread operator
+3. rest parameters
+4. default parameters
+5. template literals
+6. arrow function
+7. for-of loop
+
+JSX - 자바스크립트의 확장문법
+리엑트 컴포넌트를 화면에 보여주기 위해 사용.
+반드시 JSX를 리턴해주어야함.. 얼핏보면 html과 같음
+JSX는 JS코드로 변환되어야하기때문에 반드시 몇가지 규칙을 지켜야함.
+1. 반드시 하나의 엘리먼트로 감싸야 한다.
+2. 자바스크립트 코드를 적용할 땐 {} 안에 작성한다.
+3. JSX 내부에선 if문을 사용할 수 없다.
+IIFE or 삼항연산자 사용
+4. 엘리먼트의 클래스 이름을 적용할때 class가 아니며, className을 사용
+
+
+React Key Concept
+1. Data flow
+2. Props
+3. State
+4. Life Cycle
+
+1. Data flow
+단방향 데이터 흐름, 데이터가 한 방향으로만 이동한다. (쌓인 와인잔에 흐르는 물)
+리엑트에서 데이터는 항상 상위컴포트 -> 하위컴포넌트로 흐름
+직접적으로 올려주는 방법은 없음. (간접적으론 가능)
+class Parent extends Component{
+  resnder(){
+	return(
+	  <Child/>	
+	)
+  }
+}
+
+2. props - 상위컴포넌트가 하위 컴포넌트에게 내려주는 데이터
+하위컴포넌트는 프롭스를 단순히 사용만 할 수 있으며 변경 할 수 없다.
+
+상위컴포넌트
+function Parent(){
+  return(
+	<Child name="walli"/>
+	)
+}
+
+하위 컴포넌트
+function Child(props){
+	return(
+	<h1>hello {props.name}</h1>
+	)
+}
+
+태그안에 속성을 주는것 처럼 속성을 넘겨줄 수 있음.
+
+3. State 컵안에 들어있는 물. 
+컴포넌트가 갖는 상태,
+객체의 형태로 컴포넌트 내에서 보관하고 관리한다.
+스테이트를 사용하기위해서는 반드시 class컴포넌트로 작성되어야한다.
+값을 변경할 땐 반드시 setState메서드를 사용해야 한다.(재선언 x)
+
+state 값 변경(setState 메서드 사용) -> render()함수가 실행
+
+class Person extends Component{
+	state ={
+		power : 50,
+		isHungry : false
+	}
+	render(){
+		return(
+			..JSX code...		
+		)
+	}
+}
+
+4. Life cycle
+컴포넌트가 브라우저에 보여질 때, 업데이트 될 때, 사라질 때 각 단계 전후로 특정 메서드가 호출된다.
+
+컴포넌트(생성)
+constructor() -> render() -> componentDidMount()
+생성자 불림 -> 렌더메소드 실행(jsx반환 및 화면이 그려짐) ->  componentDidMount
+
+컴포넌트(업데이트) -  state값 변경시 실행됨
+state값 변경 -> render() ->  componentDidUpdate()
+
+메서드를 적절히 이용하여 원하는 타이밍에 원하는 작업을 수행할 수 있어야함.
+함수형 component 에서는 life cycle method가 실행되지 않음
+
+Start Reat Intro
+1. React 핵심 개념 정리
+	- React 공식문서 읽기
+	- React 핵심 키워드 블로깅(12가지 핵심 개념 중 하나를 골라 블로깅을 진행)
+2. React 프로젝트 실습
+
+React의 12가지 main concepts
+react Component
+React 핵심 개념 블로깅
+
+Dependency 및 plugin설치
+npm install --save react react-dom
+babel설치
+npm install --save-dev babel-core babel-loader babel-preset-react babel-preset-es2015 webpack webpack-dev-server
+
+전역설치
+npm install babel-cli -g
+
+바벨을 설치하면 기본적으로 세개의 프로그램이 설치된다.
+1. babel
+2. babel-node
+3. babel-external-helpers
+babel은 ES6로 작성한 코드를 변경해주는 역할을 한다.
+babal-node는 ES6로 작성한 코드를 실행하는 기능이다.
+node와 동일한 기능을 하는데 ES6문법을 완전히 지원한다는 점에서 차이가 있다.
+
+
+
+Babel

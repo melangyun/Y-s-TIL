@@ -1,0 +1,20 @@
+외부함수의 context에 접근할 수 있는 내부함수
+외부함수가 실행 종료된 뒤에도 반환된 내부함수가 계속 이 외 함수의 스코프를 참조할수있다.
+
+git init : 스스로 프로젝트 만들기(프로젝트 시작)
++ 깃허브에서 프로젝트를 어떻게 만들것인가!
+
+Branching
+other git commands(merge, fetch, stash...)
+
+1. Linter : 코드 스타일을 지키는지 체크해 주는 툴
+읽기 좋은 코드, 유지 보수하기 좋은 코드를 만드는데 큰 도움
+2. Tester
+작성한 코드가 의도한 대로 동작하는지, 결함이 없는지 자동화하여 테스트 해주는툴
+
+npm list -g --depth=0
+packaging manager yarm/npm
+
+터미널에서 node 명렁어 입력하면 콘솔처럼 칠 수있음.
+
+
