@@ -1,0 +1,356 @@
+노드 Js - 브라우저가 아닌 환경에서 자바스크립트를 사용하기위함
+
+What is React
+web page를 만드는방법
+1. HTML+ CSS+ JS
+2. React, View 등 front 라이브러리 사용
+
+리엑트 - component에 집중하고있는 라이브러리
+ Component : 하나의 의미를 가진 독립적인 단위 모듈
+하나의 의미를 가진 태그 사용가능!! ->재사용성 상승, 직관적
+
+React - ES6 & JSX
+리엑트는 기본적으로 ES6사용!
+반드시 알아야하는 개념
+1. Destructuring
+2. spread operator
+3. rest parameters
+4. default parameters
+5. template literals
+6. arrow function
+7. for-of loop
+
+JSX - 자바스크립트의 확장문법
+리엑트 컴포넌트를 화면에 보여주기 위해 사용.
+반드시 JSX를 리턴해주어야함.. 얼핏보면 html과 같음
+JSX는 JS코드로 변환되어야하기때문에 반드시 몇가지 규칙을 지켜야함.
+1. 반드시 하나의 엘리먼트로 감싸야 한다.
+2. 자바스크립트 코드를 적용할 땐 {} 안에 작성한다.
+3. JSX 내부에선 if문을 사용할 수 없다.
+IIFE or 삼항연산자 사용
+4. 엘리먼트의 클래스 이름을 적용할때 class가 아니며, className을 사용
+
+
+React Key Concept
+1. Data flow
+2. Props
+3. State
+4. Life Cycle
+
+1. Data flow
+단방향 데이터 흐름, 데이터가 한 방향으로만 이동한다. (쌓인 와인잔에 흐르는 물)
+리엑트에서 데이터는 항상 상위컴포트 -> 하위컴포넌트로 흐름
+직접적으로 올려주는 방법은 없음. (간접적으론 가능)
+class Parent extends Component{
+  resnder(){
+	return(
+	  <Child/>	
+	)
+  }
+}
+
+2. props - 상위컴포넌트가 하위 컴포넌트에게 내려주는 데이터
+하위컴포넌트는 프롭스를 단순히 사용만 할 수 있으며 변경 할 수 없다.
+
+상위컴포넌트
+function Parent(){
+  return(
+	<Child name="walli"/>
+	)
+}
+
+하위 컴포넌트
+function Child(props){
+	return(
+	<h1>hello {props.name}</h1>
+	)
+}
+
+태그안에 속성을 주는것 처럼 속성을 넘겨줄 수 있음.
+
+3. State 컵안에 들어있는 물. 
+컴포넌트가 갖는 상태,
+객체의 형태로 컴포넌트 내에서 보관하고 관리한다.
+스테이트를 사용하기위해서는 반드시 class컴포넌트로 작성되어야한다.
+값을 변경할 땐 반드시 setState메서드를 사용해야 한다.(재선언 x)
+
+state 값 변경(setState 메서드 사용) -> render()함수가 실행
+
+class Person extends Component{
+	state ={
+		power : 50,
+		isHungry : false
+	}
+	render(){
+		return(
+			..JSX code...		
+		)
+	}
+}
+
+4. Life cycle
+컴포넌트가 브라우저에 보여질 때, 업데이트 될 때, 사라질 때 각 단계 전후로 특정 메서드가 호출된다.
+
+컴포넌트(생성)
+constructor() -> render() -> componentDidMount()
+생성자 불림 -> 렌더메소드 실행(jsx반환 및 화면이 그려짐) ->  componentDidMount
+
+컴포넌트(업데이트) -  state값 변경시 실행됨
+state값 변경 -> render() ->  componentDidUpdate()
+
+메서드를 적절히 이용하여 원하는 타이밍에 원하는 작업을 수행할 수 있어야함.
+함수형 component 에서는 life cycle method가 실행되지 않음
+
+Start Reat Intro
+1. React 핵심 개념 정리
+	- React 공식문서 읽기
+	- React 핵심 키워드 블로깅(12가지 핵심 개념 중 하나를 골라 블로깅을 진행)
+2. React 프로젝트 실습
+
+React의 12가지 main concepts
+react Component
+React 핵심 개념 블로깅
+
+Dependency 및 plugin설치
+npm install --save react react-dom
+babel설치
+npm install --save-dev babel-core babel-loader babel-preset-react babel-preset-es2015 webpack webpack-dev-server
+
+전역설치
+npm install babel-cli -g
+
+바벨을 설치하면 기본적으로 세개의 프로그램이 설치된다.
+1. babel
+2. babel-node
+3. babel-external-helpers
+babel은 ES6로 작성한 코드를 변경해주는 역할을 한다.
+babal-node는 ES6로 작성한 코드를 실행하는 기능이다.
+node와 동일한 기능을 하는데 ES6문법을 완전히 지원한다는 점에서 차이가 있다.
+
+
+2
+JSX - JavaScript 를 확장한 문법, UI가 어떻게 생겨야 하는지 설명하기 위해 React오 ㅏ함께 사용할 것을 권장
+Js의 모든 기능이 포함되어있음.
+const element = <h1>Hello, world!</h1>
+
+JSX는 엘리먼트(element)를 생성함
+
+JSX란?
+React에서 이벤트가 처리되는 방식, 시간에 따라 state가 변하는 방식, 화면에 표시하기 위해 데이터가 준비되는 방식 등 렌더링 로직이 본질적으로 다른 UI 로직과 연결된다는 사실을 받아들입니다.
+
+JSX속성 정의
+속성에 따옴표를 이용해 문자열 리터럴을 정의 할 수 있다.
+const element = <div tabIndex="0"></div>;
+중괄호를 사용하여 어트리뷰트에 Js표현식을 삽입할 수 도 있다.
+const element = <img src={user.avatarUrl}></img>;
+
+JSX로 자식 정의
+태그가 비어있다면 XML처럼 />를 이용하여 바로 닫아주어야함
+const element = <img src={user.avatarURL}/>;
+
+JSX태그는 자식을 포함할수 있다.
+const element =(
+	<div>
+		<h1>Hello!</h1>
+		<h2>Good to see you here.</h2>	
+	</div>
+);
+
+JSX는 주입 공격을 방지함
+const title = response.potentiallyMalicousInput;
+// 이것은 안전합니다.
+const element = <h1>{title}</h1>;
+
+JSX는 객체를 표현함.
+Babel은 JSX를 React.createElement()호출로 컴파일함
+const element = (
+	<h1 className ="greeting">
+		Hello, world!	
+	</h1>
+);
+
+위 코드는 아래와 동일함.
+const element = React.createElement(
+	'h1',
+	{className : 'greeting'},
+	'Hello world!'
+);
+
+React. createElement()는 버그가 없는 코드를 작성하는데 도움이 되도록 몇가지 검사를 수행하며, 기본적으로 다음과 같은 객체를 생성함(단순화 시켰을 때)
+const element = {
+	type : 'h1',
+	props : {
+		className : 'greeting',
+		children : 'Hello, world!'	
+	}
+};
+이러한 객체를 React엘리먼트라고 하며, 이를 화면에 표시하려는 항목에 대한 설명이라고 생가할 수 있다.
+React는 이러한 객체를 읽은 후 DOM을 구성하고 최신으로 유지하는 데 이러한 객체를 사용함
+
+
+
+3
+엘리먼트 렌더링
+엘리먼트 - react의 가장 작은 단위
+
+const element = <h1>Hello, world</h1>;
+엘리먼트는 화면에 표시할 내용을 기술한다.(컴포넌트와 엘리먼트와 혼동하지 말것)
+
+DOM에 엘리먼트 렌더링하기
+React로 구현된 애플리케이션은 일반적으로 하나의 루트 DOM노드가 있음
+const element = <h1>Hello, world</h1>;
+ReactDOM.render(element, document.getElementById('root'));
+
+
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    </div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+
+React DOM은 해당 엘리먼트와 그 자식 엘리먼트를 이전의 엘리먼트와 비교하고 DOM을 원하는 상태로 만드는데 필요한 경우에만 DOM을 업데이트합니다.
+
+
+
+4. Component 와 Props
+컴포넌트는 기본적으로 Js함수와 유사함.
+props라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React엘리먼트를 반환한다.
+함수 컴포넌트와 클래스 컴포넌트
+
+함수컴포넌트
+function Welcome(props){
+	return <h1>Hello, {props.name}</h1>;
+}
+이 함수는 데이터를 가진 하나의 props(속성을 나타내는 데이터)객체 인자를 받은 후, React엘리먼트를 반환하므로, 유효한 React 컴포넌트이다.
+이러한 컴포넌트는 Js함수이기때문에 함수 컴포넌트라고 호칭
+
+클래스 컴포넌트(ES6 class)_위 함소컴포넌트와 동일
+class Welcome extends React.Component{
+  render(){
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+
+
+컴포넌트 렌더링
+
+const element = <div/>;
+React 엘리먼트는 사용자 정의 컴포넌트로 나타낼 수 있음.
+const element = <Welcome name="Sara"/>;
+
+
+React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 JSX어트리뷰트를 해당 컴포넌트에 단일 객체(props)로 전달함
+
+Hello, Sara 렌더링 예시
+
+function Welcome(props){
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name ="Sara"/>;
+ReactDOM.render(
+  element,
+  document.getElementById('root');
+);
+
+1. <Welcome name ="Sara"/>엘리먼트로 ReactDOM.render()를 호출
+2. React 는 {name : 'Sara'}를 props로 하여 Welcome 컴포넌트를 호출
+3. Welcom 컴포넌트는 결과적으로 <h1>Hello, Sara</h1>엘리먼트를 반환함
+4. React DOM 은 <h1>Hello, Sara</h1>엘리먼트와 일치하도록 DOM을 효율적으로 업데이트
+
+
+컴포넌트 합성
+
+컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있음.
+function Welcome(props){
+	return <h1>Hello, {props.name}</h1>;
+}
+
+function App(){
+	return(
+		<div>
+			<Welcome name="Sara"/>
+			<Welcome name="Cahal"/>
+			<Welcome name="Edite"/>	
+	);
+}
+
+ReactDom.render(
+   <App/>
+   document.getElementByInd('root');
+);
+일반적으로 새 React앱은 최상위에 단일 App컴포넌트를 가지고있음.
+하지만 기존 앱에 React를 통합해야 하는 경우에는 Button과 같은 작은 컴포넌트부터 시작해 뷰 계층의 상단으로 올라가면서 점진적으로 작업해야 할 수 있음
+
+
+컴포넌트 추출
+
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <div className="UserInfo">
+        <img className="Avatar"
+          src={props.author.avatarUrl}
+          alt={props.author.name}
+        />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+
+
+
+
+
+velopert_누구든지 하는 리액트 초심자를 위한 리액트 핵심강좌
+#1 소개
+https://velopert.com/3613
+
+#2 프론트엔드라이브러리란 무엇인가?
+
+리엑트는 인기있는 프론트엔드 라이브러리이다.
+현재의 웹 -> 단순한 웹이 아닌 "웹 애플리케이션"
+사용자와의 interaction이 별로없다면 프론트앤드 라이브러리가 필요없을수도 있다. 하지만 프로젝트의 규모가 커지고 다양한 유저와 Interaction을 해야한다면 너무나 많은 DOM이 존재하여 번거로워질것이다.
+웹 개발을 할때 귀찮은DOM관리와 상태값 업데이트관리를 위하여 많은 라이브러리 or 프레임워크가 만들어졌다.
+개발을 하게될 때 생산성과 깊은 관련, 유지보수 용이
+Angular, Ember, Backbone, Vue, React
+3대장 : react, Angular, Vue
+"장인은 도구를 탓하지 않는다!"
+
+Angular : Angular 에 HTTP Client, Router, 다국어지원 등등 내장 라이브러리에 존재
+Framework차원에서는 매우 성숙하기는 하지만, 인지도측면에서는 성장하는 단계
+TypeScript 사용이 기본이며 Angular와 세트라고 봐도 무방!
+  
+React : 컴포넌트개념에 집중되어있는 "라이브러리"(프레임워크가 아님!)
+데이터를 넣으면 우리가 지정한 인터페이스를 조립하여 보여줌, 페이스북 개발자들이 라이브러리의 성능과 개발자 경험을 개선하기 위해서 수많은 연구를 함
+Angular와는 달리 React는 사용자 View에만 신경쓰며, 나머지 기능은 3rd party library들을 활용함
+(ex : redux , react router 등)다만 공식 라이브러리라는 개념이 딱히 없음. 한가지 문제에 많은 솔루션들이 있음
+
+
+Vue : 입문자들이 사용하기 쉬움, webpack같은 mode번들러가 없어도 cdn으로 불러와 사용하는 형태로도 자주 이용.
+html에서 스크립트 태그로 불러올수도있음!
+마크업을 만들어주는 작업자가 있다면 작업흐름이 매끄러움.
+공식 라우터나 라이브러리가 존재함.
+
+
+#3 리액트의 Virtual DOM
+We built React to solve one problem : building large applications with data that changes over time.
+데이터가 변화하는 대규모 애플리케이션을 구축하기 위해 리액트를 만들었습니다.
+
+MVC, MVVM, MVW등을 사용하던 기존 웹 프레임워크/ 라이브러리
+공통점 : Model
