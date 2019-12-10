@@ -1,0 +1,41 @@
+💪️#6 JSX 기본문법 알아보기(1)
+🐾️JSX는 HTML이랑 비슷하지만, 지켜야 할 규칙이 몇가지 있다.
+1. 꼭 닫혀야 하는 태그
+	- input 이나, br태그에서 닫히는 부분이 없다면 오류가 나게됨!
+	-> <input type="text"/> : self closing tag
+
+2. 감싸져 있는 엘리먼트
+두개 이상의 앨리먼트는 무조건 하나의 엘리먼트로 감싸져 있어야 합니다.	
+v16.2 에서 개선이 있긴했음 -> Fragment로 사용 O
+ex)
+import React, { Component , Fragment } from 'react';
+
+class App extends Component{
+	render(){
+		return (//Fragemnet로 사용되면 extra div가 사용되지 않아 이득이다.
+			<Fragment>
+				<div>Hello</div>
+				<div>Bye</div>
+			</Fragment>		
+		);
+	}
+}
+
+
+🐾️JSX안에서 자바스크립트 값 사용하기
+
+import React, { Component } from 'react';
+
+class App extends Component {
+	render(){
+		const name = 'react';
+		return (
+			<div>
+				hello {name}!
+			</div>		
+		);
+	}
+}
+
+
+💪️#7 JSX 기본문법 알아보기(2)
