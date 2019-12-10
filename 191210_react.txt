@@ -37,5 +37,333 @@ class App extends Component {
 	}
 }
 
+{}안에 if문을 사용할수는 없음 -> 3항연산자 사용!
+
+import React, { Component } from 'react';
+
+class App extends Component {
+	render(){
+		const name = 'velopert!';
+		return (
+			<div>
+				{
+				name === 'velopert!' &&< div> 벨로퍼트다!</div>
+				}
+			</div>		
+		);
+	}
+}
+
+🤠️&&연산자를 사용하면 조건부 렌더링을 사용할 수 도 있다!
+
+조건이 여러개일 경우 JSX 밖에서 하는 경우가 일반적이긴 하지만.... IIF라고 함수를 선언하고 바로 사용하는 방식으로 사용할수도 있다.
+🤠️IIF 방식
+import React, { Component } from 'react';
+
+class App extends Component {
+	render(){
+		const value = 1;
+		return (
+			<div>
+				{
+				(() => {
+					if(value ===1) return <div>1이다!</div>
+					if(value ===2) return <div>2이다!</div>
+					if(value ===3) return <div>3이다!</div>
+					return <div>없다</div>
+				})()
+				}
+			</div>		
+		);
+	}
+}
+참고 : arrow Function 은 this, arguments, super가 없다.
 
 💪️#7 JSX 기본문법 알아보기(2)
+
+🤠️ CSS스타일 넣기 - 객체 형태로 넣어야함!
+🤠️ '-'(대쉬) 대신 새로운 단어가 시작될 때 대문자로 시작함
+
+import React, { Component } from 'react';
+
+class App extends Component {
+	render(){
+		const style = {
+			backgroundColor : 'black',
+			padding : '16px',
+			color :'white',
+			fontSize : '36px'		
+		};
+		return <div style={style}>안녕하세요!</div>;
+	}
+}
+
+🤠️JSX 에서 Class(className) 사용하기
+- class (x) : 작동하기는 하지만, 올바르지는않음!
+- className(O) 
+
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+	render(){
+		return <div className="App">안녕하세요!</div>;
+	}
+}
+export default App;
+
+🤠️주석 작성하기
+
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+	render(){
+		return (
+		//❌️여기에 작성하면 랜더링이 되어버림
+		/*
+			❌️멀티라인도 예외가 아니다		
+		*/
+		(/* ⭕️이렇게 해야 주석이 입력됨!*/)
+			<div
+			//⭕️이것도 주석이 됨!			
+			>
+				<h1>리액트</h1>
+			</div>
+		);
+	}
+}
+export default App;
+
+💪️#8 Props
+
+props : 부모컴포먼터가 자식 컴포먼트한테 값을 전달 할 때 사용됨
+<Child value="value"/>
+🖕️여기에서 value가 하나의 props
+
+import React, {Component } from 'react';
+class MyName extends Component{
+	//기본값 설정 가능!(입력 x일때!)
+	static defaultProps ={
+		name : '기본이름'
+	}
+	render(){
+		return(
+			<div>
+				안녕하세요! 제 이름은 <b>{this.props.name}</b>입니다!
+			</div>		
+		)
+	}	
+}
+MyName.defaultProps ={
+//여기에서도 기본값 설정 가능! 클래스 하단, 상단과 같음
+	name : 'velopert'
+}
+
+export default MyName;
+
+
+
+
+import React, { Component } from 'react';
+import MyName from './MyName';
+
+class App extends Component {
+	render(){
+		return (
+			<MyName name="리엑트"/>;
+		);
+	}
+}
+export default App;
+
+🤠️함수형 컴포넌트 - Component 필요없음!
+import React from 'react';
+const MyName = ({name}) =>{
+	return (
+		<div>
+			안녕하세요! 제이름은 {name}입니다.
+		</div>		
+	)
+}
+MyName.defaultProps ={
+	name :'velopert'
+};
+
+export default MyName;
+
+cf)
+const object = { a:1 , b:2};
+const { a, b } = objcet; // a -> 1, b ->2
+
+function say Hello({name, age}){
+	console.log(name+"의 나이는 "+ age);
+}
+sayHello({name:'react',age:'몰라'})
+//->react의 나이는 몰라!
+
+🤠️함수형 컴포넌트와 class컴포넌트와의 주요 차이점은 state기능이 없고, life Cycle의 기능이 빠져있음!!!
+함수형 컴포넌트는 초기 Mount 속도가 미세하게 빠르고 불필요한 기능이 빠져있어 메모리 자원을 조금 덜 사용함
+아주 간단한 기능 구현의 경우 조금 더 최적화 된 코드를 가질 수 있음 
+
+
+
+
+💪️#9 State
+props 는 부모가 자식한테 내려줄 때 필요함! 또한 읽기전용임.
+stae는 내부에서 변경 할 수 있다. 변경 할 때는 언제나 setState라는 함수를 사용한다.
+state는 컴포넌트 자기 자신이 가지고 있다.
+
+import React, {Component }from 'react';
+class Counter extends Compoent{
+	//무조건 객체여야함!!	
+	state = {
+		number : 0
+	}
+	
+	//화살표 함수로 일부로 작성해야함 -> this binding차이때문에!!
+	/*화살표 함수르 사용하지 않고 일반 function으로 할 경우
+	*	constructor(props){
+	*		super(props);	
+	*		this.handleIncrease = this.handleIncrease.bind(this);
+	*		this.handelDecrease = this.handelDecrease.bind(this);
+	*		this 명시작업을 해주어야함	
+	*	}
+	*/
+	handelIncrease = () =>{
+		// this.state.number++ 이런 코드는 절때 작성해서는 안됨.
+		// Component에서 본인의 값이 바뀌었는지 인지하지 못하기때문에!
+		this.setState({
+			number : this.state.number +1
+		})
+	}
+
+	handelDecrease = () =>{
+		this.setState({
+			number : this.state.number - 1
+		})
+	}
+
+	render(){
+		return(
+			<div>
+				<h1>카운터</h1>
+				<div>값 : {this.state.number}</div>
+				<button onclick ="this.handelIncrease">+</button>
+				<button onclick ="this.handelDecrease">-</button>
+			</div>		
+		)
+	}
+}
+export default Counter;
+
+
+import React, {Component} from 'react';
+import Counter from './Counter';
+
+class App extends Component {
+	render(){
+		return <Counter />
+	}
+}
+
+export default App;
+
+state 값이 바뀔때마다 컴포넌트는 rerendering이 된다.
+
+
+
+💪️#10 LifeCycle API(1)
+1. 컴포먼트가 나타낼때 (Mounting)
+2. 컴포먼트가 업데이트 될 때 (Updating)
+3. 컴포먼트가 사라질때 (Unmounting)
+LifeCycle API를 사용하면됨!!
+외워야 하는게 아니라, 사용하게 될 시점에 유용하게 써먹을 수 있으면 된다!
+
+- Mounting
+	* constructor : 생성자 함수. 컴포넌트의 초기설정을 함
+	* getDerivedStateFromProps : 만약 props 로 받은 값을 state값으로 동기화시키고 싶을 때 사용, 마운팅과정이나 Updating에서 사용
+	* render : 어떤 돔을 만들게 될지, 어떤 태그를 사용하게 될지!
+	* componentDidMount : 외부 라이브러리 같은것을 사용하게 될때 특정 DOM에 차트를 그려주세요! 라는식으로 이용할수도 있음!, 스크롤 이벤트, 이벤트 리스너 ,API요청 등 ~~등등 컴포넌트 렌더링 후 이벤트
+	* shouldComponentUpdate : 컴포넌트가 업데이트 되는 성능을 최적화시킬때 사용, true/false반환⭕️랜더링 선택가능
+	* getSnapshotBeforeUpdate : 랜더링 결과물이 브라우저에 반영되기 직전 불러옴, 랜더링 후 스크롤의 위치, 돔의 크기 등을 사전에 가져옴
+	* componentDidUpdate : state가 바뀌었을때!!
+
+- Unmounting : 컴퍼넌트가 소멸될때 호출 -> componentWillUnmmount
+		리스너를 없에줌!
+
+
+
+
+💪️#11 LifeCycle API(2) - 코드상으로!
+
+🐾️App.js
+import React, {Component } from 'react';
+import MyComponent from './MyComponent'
+class App extends Component {
+	constructor(props){
+		super(props);
+		//원래 컴포넌트를  extedns 하고 불러올때 생성자 함수를 먼저 호출하고 하고싶은 작업을 함
+		 console.log('constructor');
+	}
+	componentDidMount(){
+		console.log('componentDidMount');
+		console.log(this.myDiv.getBoundCliendtRect());
+		//속성을 가져옴!
+		
+	}
+	handelClick = () =>{
+		this.setState({
+			counter : this.state.counter +1
+		})
+	}
+	render(){
+		return(
+			<div ref={ref => this.myDiv = ref}>
+				<MyComponent value={this.state.counter} />
+				<button onClick = {this.handelClick}>Click Me</button>
+			</div>	
+		);	
+	}
+}
+export default App;
+
+
+
+🐾️MyComponent.js
+import React, {Component} from 'react';
+
+class MyComponent extends Component{
+	state = {
+		value : 0
+	};
+
+	static getDerivedStateFromProps(nextProps, prevState){
+		//nextProps 다음 props
+		//prev업데이트 되기 전 statement
+		if(prevState.value !== nextProps.value){
+			return {
+				value nextProps.value			
+			}
+		}
+		return null;
+		//변경할 사항이 없을때
+	}
+	
+	shouldComponentUpdat(nextProps, nextState){//특정 조건에 따라 랜더링을 막아줄수 있는 함수!
+		if(nextProps.value === 10) return false;
+		return true;
+		//10이 넘어가면 렌더링되지않음!
+	}	
+
+	render(){
+		return (
+			<div>
+				<p> props : {this.props.value} </p>
+				<p> state : {this.state.value} </p>
+			</div>		
+		)
+	}
+}
+
+export default Mycomponent;
