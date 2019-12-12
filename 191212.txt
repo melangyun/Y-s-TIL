@@ -1,0 +1,24 @@
+checkPoint Solution
+
+🐾️1번
+A JavaScript library that builds on the premise of declarative and reusable components. : 'React'
+A structural framework for dynamic web apps. : 'AngularJS'
+A predictable state container for JavaScript apps. : 'redux'
+A JavaScript compiler that takes code written in one syntax and transpiles it to another using presets. : 'barbel'
+
+
+🐾️state의 특징
+컴포넌트의 상태를 나타냄, props는 상위 컴포넌트에서 내려주는 데이터로 변경이 불가능하지만 state는 어떤 컴포넌트던지 state를 가질 수 있고 serState를 통해 state를 바꿔 줄 수 있고, 컴포넌트가 반드시 state를 가질 필요는 없다
+
+- 클래스 컴포넌트에서 사용 가능
+- immutable하다
+	- 준홍's 정리 : 스테이트를 직접 건드려서 바꾸면 랜더가 안됨
+- 컴포넌트 내부에서만 접근 가능하다(private)
+- 변경하려면 setSatae()사용
+- state변화의 결과로 life cycle이 순환한다.
+
+
+🐾️Life Cycle API는 무엇인가요?
+컴포넌트의 생애주기 각 시점에 원하는 작업을 수행할 수 있게 도와주는 API
+
+
