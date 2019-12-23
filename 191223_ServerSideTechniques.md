@@ -4,8 +4,6 @@
 
 ## Achevement Goals
 
----
-
 1. 어떤 경우에 중첩된 callback이 발생하는지 이해한다.
 2. Asynchronous code를 읽고 쓰기 편하도록 Promise를 사용해본다.
 3. async/await keyword에 대해 이해하고, 작동 원리 및 장점 및 단점을 이해한다.
@@ -13,8 +11,6 @@
 5. HTTP server routing 을 다루면서 웹 서버가 어떻게 작동하는지 이해한다.
 
 ## Intro Server Side Techniques Sprint
-
----
 
 - Promises - Solo Sprint
 
@@ -36,8 +32,6 @@
 
 ## Key Materials
 
----
-
 1. Why Async
 2. Callback
 3. Promise
@@ -52,8 +46,6 @@
 
 
 ## Sprint - Promises : 자바스크립트의 비동기 처리
-
----
 
 - 비동기로 일어나는 작업들을 마치 순차적으로 일어나는것처럼 작업해주는것을 비동기처리!
 
@@ -92,9 +84,7 @@ fecth('css').then((res)=>{
 2. then() : 응답을 하는데에 시간이 오래걸릴 수 있다.
    'fetch'야, 응답이 끝나면 안의 callback함수를 실행시켜줘!
 
-## Discussion Async JS
-
----
+## Discussion Async JS with 두현
 
 - require과 Import의 차이?,
   import default~
