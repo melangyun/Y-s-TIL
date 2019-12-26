@@ -7,10 +7,40 @@
 ## Linux
 
 - sudo apt-get update
+
 - sudo apt-get autoclean
+
 - sudo apt-get clean
+
 - sudo apt-get autoremove
+
 - vim '파일명' : vim이라는 에디터 안에서 돌아감!
+
+- 잠금화면 배경화면 설정
+  터미널에 code /usr/share/gnome-shell/theme/ubuntu.css
+  입력시 vs코드 에디터에 css파일에 출력됨 id가 \#lockDialogGroup인 부분을 찾아서 수정!
+
+  - 원본
+
+    ```css
+    #lockDialogGroup {
+        background: #596275 url(resource:///org/gnome/shell/theme/noise-texture.png);
+      background-repeat: repeat;
+    }
+    ```
+
+    수정본
+
+    ```css
+    #lockDialogGroup{
+        background: #596275 url(file://`${경로}`);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center; 
+    }
+    ```
+
+  CSS수정본 모두 주석으로 이름달았음(`/*이름*/` )
 
 ## npm
 

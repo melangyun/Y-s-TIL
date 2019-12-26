@@ -179,7 +179,7 @@ request(options).then().catch(err => callback(err));
 
 # 자바스크립트 Promise 쉽게 이해하기
 
-​	[링크](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/)
+​	[블로그 링크](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/) 
 
 ## Promise
 
