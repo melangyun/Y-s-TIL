@@ -48,7 +48,7 @@ Model View Controller : 일련의 sw가 돌아가는것에 대한 하나의 디�
 
 ### MVC패턴을 사용하는 프레임워크들
 
-- Ruby on Rails (Ruby)
+- ㅋRuby on Rails (Ruby)
 - Laravel(PHP)
 - Codeigniter(PHP)
 - Django(python)
@@ -169,7 +169,96 @@ Structed Query Language : 구조화된 Query언어
   WHERE City LIKE '[^acf]%';
   ```
 
+  ## 생활코딩 - mysql db생성부분만!
+  
+  ### mysql 접속
+  
+  ```mysql
+  sudo mysql -uroot -p
+  -- mysql -u[사용자] -p
+  ```
+  
+  ### 스키마의 사용
+  
+  ```mysql
+  CREATE DATABASE [이름];
+  DROP DATABASE [이름];
+  -- how to show DB list in my sql?
+  -- 목록보기!
+  SHOW {DATABASES | SCHEMAS} 
+  [LIKE 'pattern'| WHERE expr]
+  
+  -- create 후 USE [db이름]으로 해줘야 사용 할 수 있다.
+  USE [이름];
+  ```
+  
   
 
 
+
+## ORM(Object-Relational Mapping)
+
+- Sequelize
+- Assiciation
+- Transaction
+
+### Sqeulize 사용하기1(sequelize init)
+
+sqeqeulize는 nodeJs에서 웹을 DB에 연동할 때 raw Query문을 사용하지 않고 쉽게 다룰 수 있도록 도와주는 라이브러리 이다.
+seqeulize는 DB에서 조회된 값을 객체로 전달해주는 ORM이다.
+ORM이란 객체와 관걔형 DB의 관계를 매핑해주는 도구이다.
+
+**sqeulize 다운로드 : **`npm install --save sequelize`
+**mysql2 다운로드 : ** `npm install --sqve mysql2`
+**sequelize-cli 전역으로 설치 : ** `npm install -g sequelize-cli` ??
+
+````javascript
+sequelize init
+````
+
+**config.json 파일생성됨 ** 
+
+````json
+//config.json은 DB 연동에 필요한 정보가 들어있다.
+{
+    "development" : {
+        "username" : "root",
+        "password" : "비밀번호",
+        "database" : "db명",
+        "host" : "localhost",
+        "dialiect", "mysql",
+        "operatorAliases" " false"
+    }
+}
+````
+
+### Sqeulize 사용2
+
+`npm install sequelize`이후 파일작성
+
+````javascript
+var Sequelize = require('sequelize');
+var db = new Sequelize('database_name', 'username', 'passord');
+
+var User = db.define('User' , {
+    username : Sequlize.STRING
+});
+
+var Message = db.define('Message', {
+    userid : Sequelize.INTEGER,
+    text : Sequelize.STRING,
+    roomname : Sequelize.STRING
+});
+
+User.sync()
+	.then(()=> User.create({ username : 'Jean Valjean' }))
+	.then(()=> User.findAll({ where : {username : 'Jean Valjean'} }))
+	.then((users) => {
+    	users.forEach((user) => {console.log(user.username + 'exists')});
+    	db.close();
+	}).catch((err)=>{
+    	console.log(err);
+		db.close();
+	})
+````
 

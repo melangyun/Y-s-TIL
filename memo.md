@@ -41,6 +41,8 @@
     ```
 
   CSS수정본 모두 주석으로 이름달았음(`/*이름*/` )
+  
+- 경로를 GUI로 켜기 **nautilus**
 
 ## npm
 
@@ -69,6 +71,7 @@
   **pm2 list** 를 하면 실행중인 리스트가 보이고, name을 확인하여 pm2 [name] stop하면 꺼진다.
   **pm2 start main.js --watch** 이렇게 실행하면 파일이 수정 될 때 마다 재실행됨!
   **pm2 log** 문제점이 있다면 문제점을 바로 보여줌!
+- **npm install -g yarn**
 
 ## GIT
 
