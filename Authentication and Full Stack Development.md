@@ -100,3 +100,6 @@ Note right of Server : 토큰 정보 검증
 Server -> Client : Response Get/info\nset-cookei : \ntoken:session_token
 ```
 
+## Shortly express sprint
+
+- sequelize cli를 이용하여 db를 생성하고, 

@@ -264,6 +264,8 @@ User.sync()
 
 ## Sequelize CLI를 사용하여 User API만들기
 
+[sequelize공식문서](https://sequelize.org/v5/)
+
 ![orm](https://images.velog.io/post-images/jeff0720/fc584920-f895-11e8-8150-b5d2c1881964/ORMMapping.png)
 
 [참고블로그](https://velog.io/@jeff0720/Sequelize-CLI를-사용하여-간단한-User-API-만들기-vdjpb8nl0k)
@@ -291,3 +293,30 @@ ORM은 DB의 기능들을 추상화 했기 때문에, 어던 관계형DB이든 �
 
 Sequelize CLI : The Sequelize command line interface : 명령어를 사용해 데이터베이스 작업을 할 수 있는 툴.
 기능 : 마이그레이션, 시드, 모델
+
+### Sequelize CLI사용
+
+- `sudo yarn add sequelize mysql2`
+- `./node_modules/.bin/sequelize`를 실행!(글로벌 설치시 일반 실행가능)
+- `config` 파일을 통한 DB설정
+- **Sequelize CLI모델 정의 및 마이그레이션**
+  `마이그레이션`이란 `코드에 적혀져있는 DB테이블에 대해서 실제 DB에 테이블을 생성하는 개념` 
+  예시 :  `node_moules/.bin.sequelize model:generate --name User pp attributes userId:string, name:string, engName:string`
+  이라고 하면, 마이그레이션이 자동생성된다.
+- **마이그레이션 작업**
+  **마이그레이션 실행 : **`./node_modules/.bin/sequelize db:migrate` 명령어 작성 후 실행
+  **마이그레이션 취소 : ** `./node_modules/.bin/sequelize db:migrate:undo`
+
+### Sequelize CLI Seed를 사용해 데이터 추가하기
+
+**Seed : 생성된 테이블에 데이터를 추가할 수 있게 해주는 기능**
+
+- `./node_modules/.bin/sequelize seed:generage --name userData` : seeders 디렉터리에 userData파일 생성!
+  up과 down이 있어서 up시에는 코드 실행, 취소시에는 down코드 실행!
+
+### 이후 column추가 및 삭제기능, 폴더 이동기능도 있다.
+
+따로 폴더 지정해주는 작업이 필요함. 블로그 참조하기!
+
+
+
