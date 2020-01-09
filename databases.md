@@ -318,5 +318,45 @@ Sequelize CLI : The Sequelize command line interface : 명령어를 사용해 �
 
 따로 폴더 지정해주는 작업이 필요함. 블로그 참조하기!
 
+## Sequelize Hooks
+
+[참고 블로그](http://webframeworks.kr/tutorials/expressjs/expressjs_orm_four/) [목록](http://webframeworks.kr/tags/orm/) 추후 정독 필요함
+
+Hooks는 insert, update, delete등의 작업을 수행하기 전이나, 수행한 후에 호출되는 기능을 뜻한다.
+데이터베이스의 Trigger를 Sequelize에서는 Hooks라고 명칭한다. 데이터에 대한 변형이 이루어질대마다 작업해야하는 사항이 있을 때 hooks는 좋은 솔루션이 될 것이다.
+Sequelize model의 메소드중 create, update, delete 와 validate작업 전후로 hooks(trigger)를 걸 수 있다.
+hooks에 대한 메소드 종류는 다음과 같다.
+
+1. create : beforeCreate, afgerCreate, beforeBulkCreate, afterBulkCreate
+2. update : beforeUpdate, afterUpate, beforeBulkUpdate, afterBulkUpdate
+3. destroy : beforeDestroy, afterDestroy, beforeBulkDestroy, afterBulkDestroy
+4. validate : beforeValidate, afterValidate
+
+### hooks를 추가하는 3가지 방법
+
+#### 1. model define 시에 hooks에 대한 설정을 같이하는것
+
+````javascript
+module.exports = function( sequelize, DataTypes ){
+    return sequelize.define('Publisher' , {
+        pub_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+        name: {type: DataTypes.STRING(32), allowNull: false},
+        established_date: {type: DataTypes.DATE, defaultValue: DataTypes.NOW}
+    },{
+       classMethods : {},
+       tableName : true,
+        underscored : true,
+        timestams : false,
+        hooks : {
+            beforeCreate : function(){
+                // create작업 전에 해야할 사항들
+            }
+        }
+    });
+}
+````
+
+
+
 
 
