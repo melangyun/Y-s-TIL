@@ -76,9 +76,26 @@
 ## GIT
 
 - git pull remote master
+
 - git remote add pair(별칭) <url>
+
 - git --help
+
 - git pull 시에는 별 다른 권한 없이 코드를 가져올 수 있다.
   깃허브에 코드를 올렸다는 것 자체가 코드 공개를 시사하는 것 이기 때문이다.
+  
 - git pull pair master
+
 - git push origin master
+
+- **Git ignore 설정**
+
+  1. ```javascript
+     //.gitignore 파일을 생성한다.
+     $touch .gitignore
+     // .gitignore은 숨김파일이므로 아래의 2가지 방법으로 제대로 생성됐는지를 확인한다.
+     $la
+     $ls -a
+     //.gitignore 파일을 수정한다.
+     $vi. gitignore
+     ```

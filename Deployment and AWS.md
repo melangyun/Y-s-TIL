@@ -96,7 +96,7 @@ AWS가 가진 컴퓨터. 유저가 원격 접속 할 수 있다. (가상머신..
 
 - `npx create-react-app pratice-react-deploy` 리액트 앱 빌드
 - 기본값인 `localhost:3000`이 아니라 **public link**로 build해야 함!
-- create-react-app은 **build**라는 메소드를 제공한다
+- create-react-app은 **build**라는 메소드를 제공한다 `yarn build`
   build는 js파일과 html파일, CSS파일 등을 **webpack**을 통해 하나로 합치어 하나의 정적 파일로 만들어주는 역할을 함
 
 ## Create Bucket
@@ -104,7 +104,7 @@ AWS가 가진 컴퓨터. 유저가 원격 접속 할 수 있다. (가상머신..
 - 아마존 회원가입
 - AWS Management Console에 들와 **S3**검색
 - **버킷 만들기**클릭 후 생성
-- 버킷에 들어와도 default설정으로 되어있기때문에 배보가 아직 불가능함.
+- 버킷에 들어와도 default설정으로 되어있기때문에 배포가 아직 불가능함.
 - 버킷에 build create-react-app에서 만든 정적파일을 제공할 수 있도록 설정
   **정적 웹 사이트 호스팅** 
 - 정적 웹사이트 호스팅 -> 이 버킷을 사용하여 웹사이트를 호스팅합니다.
