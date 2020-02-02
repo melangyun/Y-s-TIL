@@ -20,8 +20,8 @@
      | ------------------------------------------------------------ | ------------------------------------------------------------ |
      | [stackoverflow - How to create this ViewEntity with TypeORM?](https://stackoverflow.com/questions/59448115/how-to-create-this-viewentity-with-typeorm) | TypeORM에서 view생성                                         |
      | [typeORM_github : How to query a view instead of a table?](https://github.com/typeorm/typeorm/issues/1024) | TypeORM에서 view생성                                         |
-     | [typeORM guide - typeorm.io](https://typeorm.io/#/)          | typeORM 튜토리얼                                             |
-| [typeORM github](https://github.com/typeorm/typeorm/blob/master/docs/entities.md) | typeORM 깃허브                                               |
+     | [typeORM guide - typeorm.io](https://typeorm.io/#/)| typeORM 튜토리얼    |
+     | [typeORM github](https://github.com/typeorm/typeorm/blob/master/docs/entities.md) | typeORM 깃허브                                               |
      | [typeORM_github-Point has different type for get](https://github.com/typeorm/typeorm/issues/2896) | typeORM - Point자료형 사용에 대한 issue                      |
      | [Mysql_point사이의 거리계산](https://purumae.tistory.com/198) | mysql point사용 및 거리 계산 예제 blog                       |
      | [Difference between VARCHAR and TEXT in mysql](https://stackoverflow.com/questions/25300821/difference-between-varchar-and-text-in-mysql) | typeORM **varchar vs text**<br />varchar는 크기 조절이 되나, text type은 max size로 fix된다. |
