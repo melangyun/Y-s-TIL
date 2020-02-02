@@ -19,7 +19,7 @@
      | 참조사이트                                                   | 설명                                                         |
      | ------------------------------------------------------------ | ------------------------------------------------------------ |
      | [stackoverflow - How to create this ViewEntity with TypeORM?](https://stackoverflow.com/questions/59448115/how-to-create-this-viewentity-with-typeorm) | TypeORM에서 view생성                                         |
-     | [typeORM_github : How to query a view instead of a table?](https://github.com/typeorm/typeorm/issues/1024) | TypeORM에서 view생성                                         |
+     | [typeORM_github : How to query a view instead of a table?](https://github.com/typeorm/typeorm/issues/1024) | TypeORM에서 view생성 |
      | [typeORM guide - typeorm.io](https://typeorm.io/#/)          | typeORM 튜토리얼                                             |
 | [typeORM_github](https://github.com/typeorm/typeorm/blob/master/docs/entities.md) | typeORM 깃허브                                               |
      | [typeORM_github-Point has different type for get](https://github.com/typeorm/typeorm/issues/2896) | typeORM - Point자료형 사용에 대한 issue                      |
@@ -133,7 +133,7 @@
      $ npm uninstall cors
      #devDependencies 와 Dependencies의 module를 모두 지움
      $ npm install cors --save
-      ````
+     ````
      
    - router 전체적인 파일구조를 설정하였음
    
