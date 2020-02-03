@@ -183,5 +183,116 @@
    
      오늘(일) 하루 학습 및 에러 내용 성현님과 잠시 후 공유하기로 하였다.
    
-   - 
+   - 성현님과 함께 에러를 구글링해서 잡았다! 원래 Connection 때문의 error였는데, 테이블 생성은 정상적으로 이루어지고, Join Table또한 한가지 문법적으로 놓친것을 고쳤다.
+      또, 문법적으로 틀린것들 또한, 성현님과 함께보고 고쳤따..! 왜 모든걸 string으로 작성햇떤거지..
+   
+   - Cat.ts 수정
+   
+      ````typescript
+      /* eslint-disable import/no-unresolved */
+      /* eslint-disable import/extensions */
+      import {
+          Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable,
+      } from "typeorm";
+      import Tag from "./Tag";
+      
+      @Entity({ name: "cat" })
+      export default class Cat extends BaseEntity {
+          @PrimaryGeneratedColumn()
+          id! :number;
+      
+          @Column({ type: "nvarchar", nullable: true, comment: "a brief explanation of about 200 characters based on uniCode." })
+          description! :string;
+      
+          @Column({ type: "point", nullable: false })
+          location! :string;
+      
+          @Column({ type: "varchar", nullable: false })
+          nickname! :string;
+      
+          @Column({ type: "varchar", nullable: false, length: 10 })
+          cut! :string;
+      
+          @Column({ type: "varchar", nullable: false, length: 100 })
+          rainbow! :string;
+      
+          @Column({ type: "varchar", nullable: true })
+          species! :string;
+      
+          @Column({ type: "varchar", nullable: true })
+          today! :string;
+      
+          @Column({
+              type: "timestamp", name: "today_time", nullable: true,
+          })
+          todayTime! :Date;
+      
+          @CreateDateColumn()
+          createAt! : Date;
+      
+          @UpdateDateColumn()
+          updateAt! : Date;
+      
+          @ManyToMany((type) => Tag, (tag) => tag.id, { cascade: true })
+          @JoinTable()
+          tags! :Tag[];
+      }
+      
+      ````
+   
+      `! : ` 는 초기 값을 보장할 수 없다는 것이라고 한다.
+      또, comment 의 ''또한 에러가 났고, default option또한 그로인해 에러가 났기때문에 임시방편적으로 제거했다.
+      사용하는 방향으로 가고싶은데, 에러가 쉬이 잡히지 않으면 사용하지 않을 수 도 있을것같다. typeORM으로 default를 설정한다고 해도 이점이 크지 않을것같다는 생각과 성현님 의견이다..!
+   
+      ````mysql
+      MariaDB [cats]> show tables;
+      +----------------+
+      | Tables_in_cats |
+      +----------------+
+      | cat            |
+      | cat_tags_tag   |
+      | tag            |
+      +----------------+
+      3 rows in set (0.001 sec)
+      
+      MariaDB [cats]> describe cat;
+      +-------------+--------------+------+-----+----------------------+----------------+
+      | Field       | Type         | Null | Key | Default              | Extra          |
+      +-------------+--------------+------+-----+----------------------+----------------+
+      | id          | int(11)      | NO   | PRI | NULL                 | auto_increment |
+      | description | varchar(255) | YES  |     | NULL                 |                |
+      | location    | point        | NO   |     | NULL                 |                |
+      | nickname    | varchar(255) | NO   |     | NULL                 |                |
+      | cut         | varchar(10)  | NO   |     | NULL                 |                |
+      | rainbow     | varchar(100) | NO   |     | NULL                 |                |
+      | species     | varchar(255) | YES  |     | NULL                 |                |
+      | today       | varchar(255) | YES  |     | NULL                 |                |
+      | today_time  | timestamp    | YES  |     | NULL                 |                |
+      | createAt    | datetime(6)  | NO   |     | current_timestamp(6) |                |
+      | updateAt    | datetime(6)  | NO   |     | current_timestamp(6) |                |
+      +-------------+--------------+------+-----+----------------------+----------------+
+      11 rows in set (0.002 sec)
+      
+      MariaDB [cats]> describe cat_tags_tag;
+      +-------+---------+------+-----+---------+-------+
+      | Field | Type    | Null | Key | Default | Extra |
+      +-------+---------+------+-----+---------+-------+
+      | catId | int(11) | NO   | PRI | NULL    |       |
+      | tagId | int(11) | NO   | PRI | NULL    |       |
+      +-------+---------+------+-----+---------+-------+
+      2 rows in set (0.001 sec)
+      
+      MariaDB [cats]> describe tag;
+      +----------+--------------+------+-----+----------------------+----------------+
+      | Field    | Type         | Null | Key | Default              | Extra          |
+      +----------+--------------+------+-----+----------------------+----------------+
+      | id       | int(11)      | NO   | PRI | NULL                 | auto_increment |
+      | content  | varchar(255) | NO   |     | NULL                 |                |
+      | createAt | datetime(6)  | NO   |     | current_timestamp(6) |                |
+      | updateAt | datetime(6)  | NO   |     | current_timestamp(6) |                |
+      +----------+--------------+------+-----+----------------------+----------------+
+      4 rows in set (0.001 sec)
+      ````
+   
+      
 
