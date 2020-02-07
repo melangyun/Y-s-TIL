@@ -12,10 +12,12 @@
          type: "simple-json", nullable: false,
      })
      cut :{Y:number, N:number, unknown:number} = { Y: 0, N: 0, unknown: 0 };
+     // 추후에 알게되었지만, 이 코드는 default값의 일종으로 사용할수도 있지만 정말 많은 에러를 유발한다.
+   // 쓰면안됨!
      ````
-
+     
    - `@ManyToMany`를 사용하면 연결된 table의 key가 자동으로 생성되지만, **pk외에 다른 column**을 추가하고싶다면 새로이 table을 형성하여 각각  `@oneToMany`, `@manyToOne`관계를 설정해주어야했다.
-     또, `@ManyToMany`는 연결된 두개의 table중 하나에만 설정해주면된다.
+     또, `@ManyToMany`는 양향향 모두 사용해야하며, `@Jointable`설정은 단방향으로 하여도 된다.
 
    - MariaDB에서 한글 인코딩문제
 
@@ -39,11 +41,8 @@
 
    - 이유는 모르겠다... 아무튼 `process.env~`변수를 사용하기 위한 세팅도 성현님과 함께 진행하였다.
    - 또한 **.env**설정을 하여 `git ignore` 설정까지 완료하였다.
-   - 
-
+   
 3. Router filetree와 request들을 작성하였고, **API문서와** 싱크를 맞추었다.( `requset`와 `reponse`)를 모두 꼼꼼히 정리하여 협업하기 편리한 형태로 정리한것같다.
-
-
 
 백지장도 맡들만 낫다고(?) 확실히 혼자서는 계속해서 헤매는 문제들이 성현(구글링의 신)님과 함께하면 금방금방해결하는것같다.
 다만 문서 작성과 디비의 디테일한부분들 등을 신경쓰느라 코딩량은 아직까지 많지는 않지만 이제 거의 세팅이 끝났으니 코딩을 시작하면 수월히 진행될것이라 생각한다.
