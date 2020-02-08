@@ -55,7 +55,7 @@
       > *(하지만, 결과적으로 DB에 여러 번 접근해야 하기 때문에 비효율적이라는 결론이었고, typeORM github_issue에서 이러한 형식보단, queryBuilder의 사용을 적극 권장하고 있기 때문에, 모든 CRUD부분을 **queryBuilder**의 형식으로 전환하였다.)*
 
       ​	하지만, db의 편의성을 위해 작성한 index.ts의 테스트user 코드 까지는 아직 refactoring되지 못하였다. 
-      ​	이 부분은 추후에 리펙토링하여 **admin**계정으로 활용 할 수 있을 것 같다.
+      ​	이 부분은 추후에 리펙토링 하여 **admin**계정으로 활용 할 수 있을 것 같다.
 
       ````typescript
       const user:User = new User();
@@ -140,8 +140,25 @@
       이 부분은 경험 부족에서 발생한 상황인 듯 하다.
       한가지 요청에 DB 접근이 힌 번 인 것 보단, 여러 번 인 것이 더 많은데,  이 때 발생할 수 있는 에러상황에서의 response를 생각해 두지 않았기에 **Client**와의 소통이 어려웠던것 같다 
       *(client를 하시는 대연님과 수지님은 다시 작성하는 것을 기다려 주셨지만.. 문서를 작성해놓고 무용지물인 상황을 맞이함.)*
+      
+      >    왠만한 CRUD코드를 작성 완료하고 API문서를 다시 수정하면서 *정말정말* 번거롭고 민폐였던 것 같다... 
+      >    기획 때 부터 상세해 적어놓을걸!
+   
+3. **기본 router과 ** 에러 상황을 설정해줌!
+
+   ````typescript
+   api.use("", BasicRouter);
+   
+   api.use((req:Request, res:Response) => {
+       res.status(404).send("Invalid address.Please check the address again");
+   });
+   
+   api.use((err:Error, req:Request, res:Response, next:NextFunction) => {
+       // eslint-disable-next-line no-console
+       console.error(err.stack);
+       res.status(500).send("Something broke!");
+   });
+   ````
 
 
-   왠만한 CRUD코드를 작성 완료하고 API문서를 다시 수정하면서 *정말정말* 번거롭고 민폐였던 것 같다... 
-   기획 때 부터 상세해 적어놓을걸!
 
