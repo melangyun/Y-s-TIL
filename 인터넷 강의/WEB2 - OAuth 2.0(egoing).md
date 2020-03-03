@@ -59,7 +59,32 @@ https://resource.server/?client_id=1&scope=B,C&redirect_uri=https://client/callb
 
 userId를 갖게된 ResouceServer은 바로 accessToken을 발급하지 않는다.
 
-`authorization code`를 발급하여 resouce Owner에게 전달하게 된다.
+`authorization code`를 발급하여 resouce Owner에게 전달하게 된다.(임시 비밀번호의 개념이다)
+클라이언트가 이 `authorization code`를 전달받고, resouce server에 이 `authorization code`를 갖고 직접 접속한다. 예시로는 다음과 같다.(authorization code 와 client_secret이 반드시 포함되있는 것이 중요하다!)
+
+`````
+https://resouce.server/token?grant_type=authorization_code&code=3&redirect_uri=https://client/callbck&client_id=1&client_secret=2
+`````
+
+client는 `authorization code`와 `secret`과 `client`과, `redirect url`값이 모두 일치하는 것을 확인하고 다음 단계로 진행하게된다.*(다음단계 : accessToken 발급!)*
+
+## 6. 엑세스 토큰 발급
+
+server는 accessToken을 client에 발급해준다. client 는 이를 저장한다.
+accessToken으로 접근시 해당 userId가 할당되는 것이다.
+
+## 7. API호출
+
+*Application programming Interface*
+
+header에 넣어서 보내거나, param으로 넘긴다..
+AUthorization : Bearer <access_token>
+
+## 8. refresh Token
+
+refresh Token이 계속 재발급 되는 경우도 있고, 그렇지 않은 경우도 있다.(optional)
+
+
 
 
 
