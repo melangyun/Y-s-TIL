@@ -1,29 +1,28 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
+# "2"라는 숫자는 config 오브젝트 버전을 뜻한다.
+# "1" 은 Vagrant 1.0.x의 버전을 의미하고,
+# "2" 는 Vagrant 1.1+ 버전을 의미한다.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
+  # 옵션은 아래 링크에 문서화 되어있음
   # https://docs.vagrantup.com.
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
+  # 모든 Vagrant 개발 환경에는 "box"가 필요하다.
+  # box에 대해서는 https://vagrantcloud.com/search 에서 알아 볼 수 있다.
   config.vm.box = "base"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
+  # "box"업데이트를 비활성화 한다.
+  # 이 기능을 비활성화 하면 "box"는 사용자가 실행 할 때에만 업데이트를 확인한다.
+  # `vagrant box outdated`는 권장되지 않는다.
   # config.vm.box_check_update = false
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # NOTE: This will enable public access to the opened port
+  # (within the machine from a port on the host machine)
+  # 시스템 내 호스트 머신 포트에서
+  # 특정 포트에 액세스 할 수 있는 forwarded port를 만듭니다.
+  # 아래 예시대로 하면, `localhost:8080`에 엑세스 하면 게스트 컴퓨터의 포트 80 에 엑세스 한다.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+  # 참고 : 이렇게 하면 opened port에 공개적으로 엑세스 할 수 있다.
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
