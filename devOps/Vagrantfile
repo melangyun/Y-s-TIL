@@ -1,3 +1,5 @@
+# Vagrant
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -5,6 +7,10 @@
 # "1" 은 Vagrant 1.0.x의 버전을 의미하고,
 # "2" 는 Vagrant 1.1+ 버전을 의미한다.
 Vagrant.configure("2") do |config|
+
+# 버전 호환성 이슈를 최소화 하기 위해서 vagrant 최소 요구 버전을 맨 위에 명시한다.
+# Vagrant.require_version ">= 1.3.5", "< 1.4.0"
+
   # 옵션은 아래 링크에 문서화 되어있음
   # https://docs.vagrantup.com.
 
@@ -20,32 +26,31 @@ Vagrant.configure("2") do |config|
   # (within the machine from a port on the host machine)
   # 시스템 내 호스트 머신 포트에서
   # 특정 포트에 액세스 할 수 있는 forwarded port를 만듭니다.
-  # 아래 예시대로 하면, `localhost:8080`에 엑세스 하면 게스트 컴퓨터의 포트 80 에 엑세스 한다.
+  # 아래 예시대로 하면, `localhost:8080`에 엑세스 하면 게스트 컴퓨터의 포트 80 에 엑세스 합니다.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  # 참고 : 이렇게 하면 opened port에 공개적으로 엑세스 할 수 있다.
+  # 참고 : 이렇게 하면 opened port에 공개적으로 엑세스 할 수 있습니다.
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine and only allow access
-  # via 127.0.0.1 to disable public access
+  # 특정 포트에 엑세스 할 수 있는 forward port mapping 을 만듭니다.
+  # 호스트 머신 내에 포트에서만 엑세스가 허용됩니다.
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
+  # 컴퓨터에 호스트 전용 엑세스를 허용하는 개인 네트워크를 만듭니다.
+  # 툭정 IP를 활용합니다.
   # config.vm.network "private_network", ip: "192.168.33.10"
 
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
+  # 일반적으로  bridged network와 일치하는 공용 네트워크를 만듭니다.
+  # bridged networks는 머신을 당신의 네트워크(on your network)에 다른 물리적 장치로 표시합니다.
   # config.vm.network "public_network"
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
+  # 게스트 VM에 추가 폴더를 공유하세요.
+  # 첫번째 argument는 호스트의 실제 폴더 경로입니다.
+  # 두번째 argument는 게스트에서 폴더를 마운트할 경로입니다.
+  # 세번째는 option입니다. [optional]
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
+  # 제공자 별 구성을 통해 Vagrant의 다양한 백업 제공자를 미세 조정할 수 있습니다. 
+  # 이들은 공급자 별 옵션을 제공합니다.
+
   # Example for VirtualBox:
   #
   # config.vm.provider "virtualbox" do |vb|
@@ -59,9 +64,9 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
+  # 쉘 스크립트로 프로비저닝을 사용하십시오.
+  # Puppet, Chef, Ansible, Salt 및 Docker와 같은 추가 공급자도 사용할 수 있습니다.
+  # 특정 구문 및 사용에 대한 자세한 내용은 설명서를 참조하십시오.
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
