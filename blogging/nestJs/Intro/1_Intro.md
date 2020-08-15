@@ -5,14 +5,13 @@
 
 nestJs란 효율적이고 확장가능한 node.js 기반 서버 프레임워크이다. <br>
 typescript를 공식적으로 완전히 지원한다. (js파일로도 작성이 가능하지만, 기능 제약이 있다.)<br>
-default HTTP server framework로 Express를 사용하고 있으며, fastify를 선택적으로 사용 가능하다. 따라서 이를 기반으로 하는 서드파티 모듈이 자유롭게 활용 가능하다.
+default HTTP server framework로 Express를 사용하고 있으며, fastify를 선택적으로 사용 가능하다. 따라서 이를 기반으로 하는 서드파티 모듈이 자유롭게 활용 가능하다.<br>
 
 ### 철학
 node.js덕분에 Javascript는 web 의 front-end 와 back-end 모두에서의 "lingua franca"가 되었다.<br>
 <br>
 ![lingua franca](./image/lingua_franca.png "lingua franca")<br>
 <br>
-그 결과 Angular, React 및 Vue와 같은 프레임워크가 생겨 생산성 높은  프론트 애플리케이션을 만들 수 있었다. <br>
 
 node.js는 보편적으로 유연한 프로젝트 구조 및 아키텍쳐를 사용할 수 있으며, 이에 따라 빠르게 서버를 띄우는 것이 가능하다.<br>
 <br>하지만 이것이 장점이다 단점으로 작용한다.
